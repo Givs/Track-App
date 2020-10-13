@@ -18,3 +18,7 @@ reiniciar
 
 postman -> ferramenta para testar as requisições .post
 seta a rota que vc ta fzd a requisição, nesse caso: localhosto:3000/signup
+
+JSON web token -> é um string que prova se aquele user é ele msm kkkkk
+
+hashing algorithm
