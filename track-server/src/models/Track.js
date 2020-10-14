@@ -22,7 +22,7 @@ const trackSchema = new mongoose.Schema({
         type: String,
         default: ''
     },
-    location: [
+    locations: [
         pointSchema
     ]
 });
