@@ -17,18 +17,19 @@ const switchNavigator = createSwitchNavigator({
     Signup: SignupScreen,
     Signin: SigninScreen
   }, {
-    defaultNavigationOptions: {
-      // como fazer desaparecer cabeçalho
+    headerMode: 'none'
     }
-  }),
+  ),
   mainFlow: createBottomTabNavigator({
     trackListFlow: createStackNavigator({
       TrackList: TrackListScreen,
       TrackDetail: TrackDetailScreen
+    }, {
+      headerMode: 'none'
     }),
     TrackCreate: TrackCreateScreen,
     Account: AccountScreen
-  })
+  }),
 });
 
 export default createAppContainer(switchNavigator);
