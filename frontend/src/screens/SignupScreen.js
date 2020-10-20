@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text, Input, Button } from 'react-native-elements';
-import Spacer from '../components/Spacer';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Context as AuthContext } from '../context/AuthContext';
+
+import Spacer from '../components/Spacer';
+
 
 const SignupScreen = ({ navigation }) => {
+
+    const { state, signup } = useContext(AuthContext);
 
     const [showEye, setShowEye] = useState(false);
     const [visible, setVisible] = useState(true);
@@ -50,7 +55,10 @@ const SignupScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
       <Spacer>
-        <Button title="Sign Up" />
+        <Button 
+          title="Sign Up"
+          onPress={() => signup({ email, password})}
+        />
       </Spacer>
     </View>
   );
