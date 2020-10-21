@@ -17,6 +17,7 @@ const SignupScreen = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    
   return (
     <View style={styles.container}>
       <Spacer>
@@ -54,12 +55,18 @@ const SignupScreen = ({ navigation }) => {
             />
         </TouchableOpacity>
       </View>
+      { state.errorMessage ? <Text style={styles.errorMessage}>{state.errorMessage}</Text> : null }
       <Spacer>
         <Button 
           title="Sign Up"
           onPress={() => signup({ email, password})}
         />
       </Spacer>
+      <TouchableOpacity onPress={() => navigation.navigate('Signin')}>
+        <Spacer>
+          <Text style={styles.link}>Already have an account? Sign in instead!</Text>
+        </Spacer>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -74,6 +81,16 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right:25,
         top: 8
+    },
+    errorMessage: {
+      fontSize: 16,
+      color: 'red',
+      alignSelf: 'center',
+      margin: 15
+    },
+    link: {
+      color:'blue',
+      alignSelf: 'center'
     }
 });
 
