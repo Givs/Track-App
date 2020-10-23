@@ -5,6 +5,8 @@ import { navigate } from '../navigationRef';
 
 const authReducer = (state, action) => {
     switch (action.type) {
+        case 'signout':
+            return { token: null, errorMessage:''}
         case 'clear_error_message':
             return { ...state, errorMessage:'' }
         case 'signin':
@@ -17,6 +19,17 @@ const authReducer = (state, action) => {
             return state;
     }
 };
+
+const tryLocalSignin = dispatch => async () => {
+    const token = await AsyncStorage.getItem('token');
+    if (token){
+        dispatch({ type: 'signin', payload: token});
+
+        navigate('TrackList');
+    }else{
+        navigate('LoginFlow');
+    }
+}
 
 const clearErrorMessage = dispatch => () => {
     dispatch({ type: 'clear_error_message'})
@@ -52,13 +65,16 @@ const signin = (dispatch) => {
 };
 
 const signout = (dispatch) => {
-    return () => {
+    return async () => {
+        await AsyncStorage.removeItem('toke');
+        dispatch({ type: 'signout'})
 
+        navigate('Signin')
     };
 };
 
 export const { Provider, Context } = CreateDataContext(
     authReducer,
-    {signin, signout, signup, clearErrorMessage},
+    {signin, signout, signup, clearErrorMessage, tryLocalSignin, signout},
     { token: null, errorMessage:'' }
 );
