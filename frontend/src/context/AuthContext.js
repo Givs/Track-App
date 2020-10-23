@@ -23,7 +23,7 @@ const signup =  (dispatch) => {
 
             navigate('TrackList')
         }catch(err){
-            dispatch({ type: 'add_error', payload: 'Something went wrong with sign up' })
+            dispatch({ type: 'add_error', payload: 'Something went wrong with Sign Up' })
         }
     };
 };
